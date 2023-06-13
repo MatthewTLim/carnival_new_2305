@@ -11,11 +11,11 @@ class Ride
   end
 
   def board_rider(rider)
-    if rider.height >= @min_height && rider.preferences.include?(@excitement) && @rider_log.key?(rider)
+    if rider.tall_enough?(@min_height) && rider.preferences.include?(@excitement) && @rider_log.key?(rider)
     @rider_log[rider] += 1
     rider.spending_money -= @admission_fee
     @total_revenue += @admission_fee
-    elsif rider.height >= @min_height && rider.preferences.include?(@excitement)
+    elsif rider.tall_enough?(@min_height) && rider.preferences.include?(@excitement)
       @rider_log[rider] = 1
       rider.spending_money -= @admission_fee
       @total_revenue += @admission_fee
