@@ -13,7 +13,7 @@ RSpec.describe Ride do
   end
 
   describe "#exists" do
-    it "Exists" do
+    it "exists" do
       expect(@ride1).to be_a(Ride)
     end
 
@@ -27,21 +27,21 @@ RSpec.describe Ride do
   end
 
   describe "#board_rider" do
-    xit "can add visitors to the ride" do
+    it "can add visitors to the ride" do
       @visitor1.add_preference(:gentle)
       @visitor2.add_preference(:gentle)
       @ride1.board_rider(@visitor1)
       @ride1.board_rider(@visitor2)
       @ride1.board_rider(@visitor1)
 
-      expect(@ride1.rider_log).to eq({@visitor1 => 2, @visitor1 => 1})
+      expect(@ride1.rider_log).to eq({@visitor1 => 2, @visitor2 => 1})
       expect(@visitor1.spending_money).to eq(8)
       expect(@visitor2.spending_money).to eq(4)
     end
   end
 
   describe "#total_revenue" do
-    xit "can calculate how much money a ride has made" do
+    it "can calculate how much money a ride has made" do
       @visitor1.add_preference(:gentle)
       @visitor2.add_preference(:gentle)
       @ride1.board_rider(@visitor1)
@@ -52,9 +52,9 @@ RSpec.describe Ride do
 
       @visitor2.add_preference(:thrilling)
       @visitor3.add_preference(:thrilling)
-      @ride3.board_rider(visitor1)
-      @ride3.board_rider(visitor2)
-      @ride3.board_rider(visitor3)
+      @ride3.board_rider(@visitor1)
+      @ride3.board_rider(@visitor2)
+      @ride3.board_rider(@visitor3)
 
       expect(@visitor1.spending_money).to eq(8)
       expect(@visitor2.spending_money).to eq(4)
