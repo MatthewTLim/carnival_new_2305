@@ -36,4 +36,20 @@ class Carnival
     end
     total
   end
+
+  def summary
+    carnival_summary = Hash.new(0)
+    carnival_summary[:visitors] = []
+    carnival_summary[:rides] = []
+
+    @rides.each do |ride|
+      carnival_summary[:visitor_count] += ride.rider_log.uniq.count
+      carnival_summary[:revenue_earned] += ride.total_revenue
+      # require 'pry'; binding.pry
+      carnival_summary[:visitors] << {:visitor => ride.rider_log, :favorite_ride => ride, :total_money_spent => ride.rider_log.keys[0].spending_money }
+      carnival_summary[:rides] << {:ride => ride, :riders => ride.rider_log, :total_revenue => ride.total_revenue}
+    end
+    carnival_summary
+  end
+
 end
